@@ -30,6 +30,7 @@ dotnet run -c Release -- [Mode] [Original file Path] [Processed file path]
 ```
 ### Example 
 ```bat
+cd GZipTest
 dotnet run -c Release -- "Compress" "D:\test.txt" "D:\test.txt.gz"
 dotnet run -c Release -- "Decompress" "D:\test.txt.gz" "D:\test2.txt"
 ```
