@@ -1,8 +1,11 @@
 # GZipTest
 
-Multithreading GZip archiver utility in .net core 2.1
+Multithreading GZip archiver utility 
 
 ## Installation
+
+### Requirements
+[.NET Core 2.1](https://dotnet.microsoft.com/download/dotnet-core/2.1)
 
 ### Clone this repo
 
