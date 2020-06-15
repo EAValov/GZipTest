@@ -51,7 +51,7 @@ namespace GZipTest.Service
                 }
                 catch (Exception ex)
                 {
-                    exception = ex;
+                    _exception = ex;
                     Interrupt();
                 }           
             }
@@ -82,7 +82,7 @@ namespace GZipTest.Service
                                
                             var new_block = new DataBlock(block.ID, block_stream.ToArray());
 
-                            BitConverter.GetBytes(new_block.DataBytes.Length).CopyTo(new_block.DataBytes, GZipHeaderOffset);
+                            BitConverter.GetBytes(new_block.DataBytes.Length).CopyTo(new_block.DataBytes, _gZipHeaderOffset);
 
                             _dataService.EnqueueWrite(new_block);
                         }
@@ -90,7 +90,7 @@ namespace GZipTest.Service
                 }
                 catch (Exception ex)
                 {
-                    exception = ex;
+                    _exception = ex;
                     Interrupt();
                 }
             }

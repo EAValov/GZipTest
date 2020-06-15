@@ -35,12 +35,12 @@ namespace GZipTest.Service
         /// <summary>
         /// Exception that may be raised.
         /// </summary>
-        protected Exception exception;
+        protected Exception _exception;
 
         /// <summary>
         /// Offset for gzip header.
         /// </summary>
-        protected int GZipHeaderOffset = 4;
+        protected int _gZipHeaderOffset = 4;
 
         /// <summary>
         /// Common constructor for any type of operation.
@@ -79,7 +79,7 @@ namespace GZipTest.Service
         /// Start processing.
         /// </summary>
         /// <returns>Success code 0</returns>
-        /// <exception cref="GZipTestService.exception"></exception>
+        /// <exception cref="GZipTestService._exception"></exception>
         public int Run()
         {         
             new Thread(Read).Start();
@@ -92,14 +92,14 @@ namespace GZipTest.Service
 
             new Thread(Wait).Start();
 
-            var writeThread = new Thread(Write);
+            var write_thread = new Thread(Write);
 
-            writeThread.Start();
+            write_thread.Start();
 
-            writeThread.Join();
+            write_thread.Join();
 
-            if (exception != null)
-                throw new Exception("There was an error during operation", exception);
+            if (_exception != null)
+                throw new Exception("There was an error while processing", _exception);
 
             return 0;
         }
@@ -153,7 +153,7 @@ namespace GZipTest.Service
             }
             catch (Exception ex)
             {
-                exception = ex;
+                _exception = ex;
                 Interrupt();
             }         
         }

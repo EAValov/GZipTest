@@ -42,7 +42,7 @@ namespace GZipTest.Service
 
                             fs.Read(header, 0, header.Length);
 
-                            selection = BitConverter.ToInt32(header, GZipHeaderOffset);
+                            selection = BitConverter.ToInt32(header, _gZipHeaderOffset);
                             data = new byte[selection];
                             header.CopyTo(data, 0);
                             fs.Read(data, header.Length, selection - header.Length);
@@ -55,7 +55,7 @@ namespace GZipTest.Service
                 }
                 catch (Exception ex)
                 {
-                    exception = ex;
+                    _exception = ex;
                     Interrupt();
                 }            
             }
@@ -90,7 +90,7 @@ namespace GZipTest.Service
                 }
                 catch (Exception ex)
                 {
-                    exception = ex;
+                    _exception = ex;
                     Interrupt();
                 }
             }

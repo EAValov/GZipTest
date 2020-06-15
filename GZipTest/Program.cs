@@ -15,7 +15,7 @@ namespace GZipTest
         /// <summary>
         /// Logger.
         /// </summary>
-        static ILogger logger = LogManager.GetCurrentClassLogger();
+        static ILogger _logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
         /// Application start point.
@@ -25,7 +25,7 @@ namespace GZipTest
         {
             try
             {
-                logger.Info("Application started with parameters {args}", args);
+                _logger.Info("Application started with parameters {args}", args);
 
                 Stopwatch stop_watch = new Stopwatch();
 
@@ -39,23 +39,23 @@ namespace GZipTest
 
                 stop_watch.Stop();
 
-                logger.Info($"Completed at {stop_watch.Elapsed.TotalSeconds} seconds.");
+                _logger.Info($"Completed at {stop_watch.Elapsed.TotalSeconds} seconds.");
 
                 return 0;
             }
             catch (OutOfMemoryException oom_ex)
             {
-                logger.Error(oom_ex, "Insufficient RAM, close some memory consuming applications and try again");
+                _logger.Error(oom_ex, "Insufficient RAM, close some memory consuming applications and try again");
                 return 1;
             }
             catch (IOException io_ex)
             {
-                logger.Error(io_ex, "Disc operation failed, check original file availability, disc space and file paths");
+                _logger.Error(io_ex, "Disc operation failed, check original file availability, disc space and file paths");
                 return 1;
             }                    
             catch (Exception ex)
             {
-                logger.Error(ex);
+                _logger.Error(ex);
                 return 1;
             }
         }
